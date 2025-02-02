@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .resume {
+            text-align: left;
+            background-color: #FFCE1B;
+            padding: 100px;
+            max-width: 700px;
+            margin: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #013220;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume" id="resume">
+        <img src=""
+        <h1>Rence Russel S. Robles</h1>
+        <p>Email: rencerobles@gmail.com</p>
+        <p>Phone: (+63) 123-456-7890</p>
+        <h2>Education</h2>
+        <p>Bachelor of Science in Computer Science Specializing Web & Mobile Application</p>
+        <h2>Experience</h2>
+        <p>Cisco Man</p>
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Networking</li>
+            <li>Database Management</li>
+        </ul>
+    </div>
+    <button id="changeColor">Change Resume Color</button>
+    
+    <script>
+        document.getElementById("changeColor").addEventListener("click", function () {
+            const resume = document.getElementById("resume");
+            const currentBgColor = resume.style.backgroundColor;
+        
+            if (currentBgColor === "rgb(1, 50, 32)") {
+                resume.style.backgroundColor = "#FFCE1B";
+                resume.style.color = "black";
+            } else {
+                resume.style.backgroundColor = "#013220";
+                resume.style.color = "white"; 
+            }
+        });
+    </script>
+</body>
+</html>
