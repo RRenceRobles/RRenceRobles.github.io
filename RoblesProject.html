@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .resume {
+            text-align: left;
+            background-color: #FFCE1B;
+            padding: 100px;
+            max-width: 700px;
+            margin: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .resume img {
+            height: 200px;
+            width: 200px;
+            border: solid 2px black;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #013220;
+            color: white;
+        }
+        .question-screen, .wrong-choice-screen, .valentine-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #013220;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume" id="resume">
+        <img src="Images/Robles1x1.jpg">
+        <h1>Rence Russel S. Robles</h1>
+        <p>Email: rencerobles@gmail.com</p>
+        <p>Phone: (+63) 123-456-7890</p>
+        <h2>Education</h2>
+        <p>Bachelor of Science in Computer Science Specializing Web & Mobile Application</p>
+        <h2>Experience</h2>
+        <p>Cisco Man</p>
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Networking</li>
+            <li>Database Management</li>
+        </ul>
+    </div>
+    <button id="changeColor">Change Resume Color</button>
+    
+    <div class="question-screen" id="questionScreen">
+        <h1>I'm going to ask you an important question, do you want to hear it?</h1>
+        <div class="button-container">
+            <button id="yesButton">YES</button>
+            <button id="noButton">NO</button>
+        </div>
+    </div>
+    
+    <div class="wrong-choice-screen" id="wrongChoiceScreen" style="display: none;">
+        <h1>Wrong choice, you have been eaten by a titan.</h1>
+    </div>
+    
+    <div class="valentine-screen" id="valentineScreen" style="display: none;">
+        <h1>WILL YOU BE MY VALENTINE'S, BALI?</h1>
+        <div class="button-container">
+            <button id="valYesButton">YES</button>
+            <button id="valNoButton">NO</button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("changeColor").addEventListener("click", function () {
+            document.getElementById("resume").style.display = "none";
+            document.getElementById("changeColor").style.display = "none";
+            document.getElementById("questionScreen").style.display = "flex";
+        });
+        
+        document.getElementById("noButton").addEventListener("click", function () {
+            document.getElementById("questionScreen").style.display = "none";
+            document.getElementById("wrongChoiceScreen").style.display = "flex";
+        });
+        
+        document.getElementById("yesButton").addEventListener("click", function () {
+            document.getElementById("questionScreen").style.display = "none";
+            document.getElementById("valentineScreen").style.display = "flex";
+        });
+    </script>
+</body>
+</html>
