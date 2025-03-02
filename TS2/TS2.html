@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Buttons Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-right: 20px;
+        }
+        
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid black;
+            cursor: pointer;
+            width: 160px;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        
+        button:hover {
+            transform: scale(1.1);
+        }
+        
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 8px solid transparent;
+            position: absolute;
+            left: 50%;
+            top: -450px;
+            transform: translateX(-50%);
+            opacity: 1;
+            transition: top 1s ease-in-out, opacity 1s ease-in-out, background-color 1s ease-in-out, border-color 1s ease-in-out;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button class="day" data-color="#FF5733" style="background-color: #FF5733; color: white;">Monday</button>
+        <button class="day" data-color="#33FF57" style="background-color: #33FF57; color: white;">Tuesday</button>
+        <button class="day" data-color="#3380FF" style="background-color: #3380FF; color: white;">Wednesday</button>
+        <button class="day" data-color="#FF33A8" style="background-color: #FF33A8; color: white;">Thursday</button>
+        <button class="day" data-color="#FFC300" style="background-color: #FFC300; color: black;">Friday</button>
+        <button class="day" data-color="#C70039" style="background-color: #C70039; color: white;">Saturday</button>
+        <button class="day" data-color="#900C3F" style="background-color: #900C3F; color: white;">Sunday</button>
+    </div>
+    
+    <script>
+        let previousBox = null;
+
+        function animateBox(color) {
+            let container = document.body;
+            let newBox = document.createElement("div");
+            newBox.classList.add("box");
+            newBox.style.borderColor = color;
+            newBox.style.backgroundColor = color;
+            newBox.style.top = "-450px";
+            container.appendChild(newBox);
+
+            setTimeout(() => {
+                newBox.style.top = "50%";
+                newBox.style.transform = "translate(-50%, -50%)";
+                newBox.style.backgroundColor = "transparent"; 
+            }, 10);
+
+            if (previousBox) {
+                let oldBox = previousBox;
+                oldBox.style.backgroundColor = "transparent"; 
+                setTimeout(() => {
+                    oldBox.style.top = "-450px";
+                    oldBox.style.backgroundColor = oldBox.style.borderColor; 
+                }, 10);
+                setTimeout(() => oldBox.remove(), 1000);
+            }
+
+            previousBox = newBox;
+        }
+
+        document.querySelectorAll('.day').forEach(button => {
+            button.addEventListener('click', function () {
+                animateBox(this.getAttribute('data-color'));
+            });
+        });
+    </script>
+</body>
+</html>
