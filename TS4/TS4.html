@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://png.pngtree.com/background/20250102/original/pngtree-advertising-restaurant-menu-with-fast-food-images-through-online-banners-social-picture-image_15837895.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .menu-item {
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .menu-item:hover {
+            transform: scale(1.1);
+        }
+        .hidden { display: none; }
+        .menu-details {
+            display: none;
+            text-align: center;
+            background: rgba(128, 128, 128, 0.8); 
+            padding: 30px; 
+            border-radius: 15px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            color: white; 
+        }
+        .menu-image {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .menu-details h2 {
+            margin-top: 20px;
+            margin-bottom: 10px; 
+            font-size: 28px;
+        }
+        
+        .menu-details p {
+            line-height: 1.8; 
+            font-size: 18px; 
+            margin-bottom: 25px; 
+        }
+        
+        .menu-details button {
+            background-color: white;
+            color: black; 
+            border: 2px solid black; 
+            padding: 12px 20px; 
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px; 
+
+        }
+        
+        .menu-details button:hover {
+            background-color: black; 
+            color: white; 
+        }
+
+        .title {
+            font-size: 36px; 
+            font-weight: bold;
+            text-align: center;
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+            margin-bottom: 30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1 class="title"> 🍽️ Restaurant Guide 🍕🍔🍝 </h1>
+        
+        <div id="menuOptions" class="row">
+            <div class="col-md-4 menu-item" onclick="showMenu('pizzaDetails')">
+                <div class="card">
+                    <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="card-img-top" alt="Pizza">
+                    <div class="card-body">
+                        <h5 class="card-title">Pizza</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 menu-item" onclick="showMenu('burgerDetails')">
+                <div class="card">
+                    <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg" class="card-img-top" alt="Burger">
+                    <div class="card-body">
+                        <h5 class="card-title">Burger</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 menu-item" onclick="showMenu('pastaDetails')">
+                <div class="card">
+                    <img src="https://static01.nyt.com/images/2025/01/17/multimedia/CR-Lemony-Hummus-Pasta-wtkj/CR-Lemony-Hummus-Pasta-wtkj-threeByTwoMediumAt2X.jpg" class="card-img-top" alt="Pasta">
+                    <div class="card-body">
+                        <h5 class="card-title">Pasta</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pizzaDetails" class="menu-details">
+            <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="menu-image">
+            <h2>Classic Margherita</h2>
+            <p>A timeless favorite, the Margherita pizza features a thin, crispy crust topped with fresh tomato sauce, creamy mozzarella cheese, and fragrant basil leaves.</p>
+            <button class="btn btn-primary" onclick="showMainMenu()">Main Menu</button>
+        </div>
+        
+        <div id="burgerDetails" class="menu-details">
+            <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg" class="menu-image">
+            <h2>Classic Cheeseburger</h2>
+            <p>A juicy beef patty grilled to perfection, topped with melted cheddar cheese, fresh lettuce, ripe tomato slices, and a soft sesame seed bun.</p>
+            <button class="btn btn-primary" onclick="showMainMenu()">Main Menu</button>
+        </div>
+
+        <div id="pastaDetails" class="menu-details">
+            <img src="https://static01.nyt.com/images/2025/01/17/multimedia/CR-Lemony-Hummus-Pasta-wtkj/CR-Lemony-Hummus-Pasta-wtkj-threeByTwoMediumAt2X.jpg" class="menu-image">
+            <h2>Garlic Parmesan Spaghetti</h2>
+            <p>A simple yet delicious dish, this spaghetti is coated in a rich garlic butter sauce, sprinkled with parmesan cheese, and garnished with fresh basil.</p>
+            <button class="btn btn-primary" onclick="showMainMenu()">Main Menu</button>
+        </div>
+    </div>
+
+    <script>
+        function showMenu(menuId) {
+            document.getElementById('menuOptions').style.display = 'none';
+            document.getElementById('pizzaDetails').style.display = 'none';
+            document.getElementById('burgerDetails').style.display = 'none';
+            document.getElementById('pastaDetails').style.display = 'none';
+            document.getElementById(menuId).style.display = 'block';
+        }
+
+        function showMainMenu() {
+            document.getElementById('menuOptions').style.display = 'flex';
+            document.getElementById('pizzaDetails').style.display = 'none';
+            document.getElementById('burgerDetails').style.display = 'none';
+            document.getElementById('pastaDetails').style.display = 'none';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
