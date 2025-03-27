@@ -6,144 +6,295 @@
     <title>Restaurant Guide</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
         body {
             font-family: Arial, sans-serif;
             background-image: url('https://png.pngtree.com/background/20250102/original/pngtree-advertising-restaurant-menu-with-fast-food-images-through-online-banners-social-picture-image_15837895.jpg');
             background-size: cover;
             background-repeat: no-repeat;
         }
+
+        .title {
+            font-size: 50px; 
+            font-family: 'Pacifico', cursive; 
+            text-align: left;
+            color: #add8e6; 
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); 
+            letter-spacing: 0px; 
+            margin-top: 70px; 
+        }
+
+        .subtitle {
+            font-size: 14px;
+            font-family: Arial, sans-serif; 
+            color: white;
+            text-align: left;
+            letter-spacing: 1px;
+            margin-left: 90px;
+        }
+
+        .main-menu-button {
+            position: fixed;
+            top: 80px;
+            right: 70px;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.1s ease-in-out;
+        }
+        
+        .main-menu-button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        #menuOptions {
+            position: absolute;
+            bottom: 20px;
+            right: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 15px;
+           
+        }
+
+        .card {
+            border: 4px solid white; 
+            border-radius: 10px 10px 30px 30px; 
+            overflow: hidden; 
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); 
+        }
+
+        .card img {
+            height: 400px; 
+            object-fit: cover; 
+        }
+
+
         .menu-item {
             cursor: pointer;
             margin-bottom: 20px;
             transition: transform 0.3s ease-in-out;
-        }
-        .menu-item:hover {
-            transform: scale(1.1);
-        }
-        .hidden { display: none; }
-        .menu-details {
-            display: none;
-            text-align: center;
-            background: rgba(128, 128, 128, 0.8); 
-            padding: 30px; 
-            border-radius: 15px;
-            max-width: 600px;
-            margin: auto;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            color: white; 
-        }
-        .menu-image {
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
+            width: 250px; 
+            position: relative;
+            overflow: hidden; 
         }
 
+        .hover-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .menu-item:hover .hover-details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-container {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            width: 1200px; 
+            height: 500px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-image {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .menu-details {
+            width: 55%;
+            padding: 20px;
+            text-align: left;
+            color: black;
+        }
+        
         .menu-details h2 {
-            margin-top: 20px;
-            margin-bottom: 10px; 
-            font-size: 28px;
+            font-size: 40px;
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         
         .menu-details p {
-            line-height: 1.8; 
-            font-size: 18px; 
-            margin-bottom: 25px; 
-        }
-        
-        .menu-details button {
-            background-color: white;
-            color: black; 
-            border: 2px solid black; 
-            padding: 12px 20px; 
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px; 
-
-        }
-        
-        .menu-details button:hover {
-            background-color: black; 
-            color: white; 
+            font-size: 20px;
+            line-height: 1.5;
+            color: black;
         }
 
-        .title {
-            font-size: 36px; 
-            font-weight: bold;
-            text-align: center;
-            color: white; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
-            margin-bottom: 30px;
-        }
-        
     </style>
 </head>
 <body>
+
+    <button class="main-menu-button" onclick="showMainMenu()">Main Menu</button>
+
     <div class="container text-center mt-5">
-        <h1 class="title"> 🍽️ Restaurant Guide 🍕🍔🍝 </h1>
-        
+        <h1 class="title"> RESTAURANT GUIDE </h1>
+        <p class="subtitle">PRODUCED BY: RENCE ROBLES</p>
         <div id="menuOptions" class="row">
             <div class="col-md-4 menu-item" onclick="showMenu('pizzaDetails')">
-                <div class="card">
-                    <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="card-img-top" alt="Pizza">
+                <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Pizza</h5>
+                        <h5 class="card-title">Margherita</h5>
+                    </div>
+                    <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="card-img-top" alt="Pizza">
+                    <div class="hover-details">
+                        <p>---------------------------------</p>
+                        <p>A classic Margherita with a crispy crust, rich tomato sauce, fresh mozzarella, and fragrant basil.</p>
+                        <p>---------------------------------</p>
+                        <p>➤ More</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 menu-item" onclick="showMenu('burgerDetails')">
-                <div class="card">
-                    <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg" class="card-img-top" alt="Burger">
+                <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Burger</h5>
+                        <h5 class="card-title">Cheeseburger</h5>
+                    </div>
+                    <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg" class="card-img-top" alt="Burger">
+                    <div class="hover-details">
+                        <p>---------------------------------</p>
+                        <p>A juicy grilled beef patty topped with melted cheese, crisp lettuce, and fresh tomatoes.</p>
+                        <p>---------------------------------</p>
+                        <p>➤ More</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 menu-item" onclick="showMenu('pastaDetails')">
-                <div class="card">
-                    <img src="https://static01.nyt.com/images/2025/01/17/multimedia/CR-Lemony-Hummus-Pasta-wtkj/CR-Lemony-Hummus-Pasta-wtkj-threeByTwoMediumAt2X.jpg" class="card-img-top" alt="Pasta">
+                <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Pasta</h5>
+                        <h5 class="card-title">Parmesan Pasta</h5>
+                    </div>
+                    <img src="https://static01.nyt.com/images/2025/01/17/multimedia/CR-Lemony-Hummus-Pasta-wtkj/CR-Lemony-Hummus-Pasta-wtkj-threeByTwoMediumAt2X.jpg" class="card-img-top" alt="Pasta">
+                    <div class="hover-details">
+                        <p>---------------------------------</p>
+                        <p>Delicious spaghetti tossed in a rich garlic butter sauce, finished with parmesan and basil.</p>
+                        <p>---------------------------------</p>
+                        <p>➤ More</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 menu-item" onclick="showMenu('milkshakeDetails')">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Vanilla Milkshake</h5>
+                    </div>
+                    <img src="https://www.foodandwine.com/thmb/aYv9IwIyM4EKLL0o7W1CUSfjXzU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Vanilla-Milkshake-FT-MAG-RECIPE-0325-4ad53abc27a74f7687e510cc17d28d1d.jpg" class="card-img-top" alt="Milkshake">
+                    <div class="hover-details">
+                        <p>---------------------------------</p>
+                        <p>A creamy, dreamy milkshake blended with fresh ingredients for the perfect sweet treat.</p>
+                        <p>---------------------------------</p>
+                        <p>➤ More</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="pizzaDetails" class="menu-details">
+        <div id="pizzaDetails" class="menu-container">
             <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="menu-image">
-            <h2>Classic Margherita</h2>
-            <p>A timeless favorite, the Margherita pizza features a thin, crispy crust topped with fresh tomato sauce, creamy mozzarella cheese, and fragrant basil leaves.</p>
-            <button class="btn btn-primary" onclick="showMainMenu()">Main Menu</button>
+            <div class="menu-details">
+            <h2>Margherita</h2>
+            <p>---------------------------------------------------------------------------------------</p>
+            <p>A timeless Italian classic, the Margherita pizza is a simple yet delicious dish that highlights the freshest ingredients. 
+                Featuring a thin, crispy crust baked to perfection, it's topped with a rich and tangy tomato sauce made 
+                from sun-ripened San Marzano tomatoes, creamy and melted mozzarella cheese, and fragrant fresh basil leaves. 
+                The combination of flavors creates a perfect balance between savory, cheesy, and herby notes, making it a go-to 
+                choice for pizza lovers who appreciate authentic flavors. Finished with a drizzle of extra virgin olive oil, 
+                this pizza is a must-try for those who love classic Italian cuisine.
+            </p>
+            <p>---------------------------------------------------------------------------------------</p>
         </div>
+    </div>
         
-        <div id="burgerDetails" class="menu-details">
+         <div id="burgerDetails" class="menu-container">
             <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg" class="menu-image">
-            <h2>Classic Cheeseburger</h2>
-            <p>A juicy beef patty grilled to perfection, topped with melted cheddar cheese, fresh lettuce, ripe tomato slices, and a soft sesame seed bun.</p>
-            <button class="btn btn-primary" onclick="showMainMenu()">Main Menu</button>
+            <div class="menu-details">
+            <h2>Cheeseburger</h2>
+            <p>---------------------------------------------------------------------------------------</p>
+            <p>A juicy and mouthwatering cheeseburger made with a perfectly seasoned, flame-grilled beef patty, topped with 
+                melted cheddar cheese, fresh lettuce, crisp pickles, thick tomato slices, and a hint of tangy burger sauce. 
+                All these ingredients are sandwiched between a soft, toasted sesame seed bun that enhances the overall 
+                texture and taste. Every bite delivers a rich and hearty experience, packed with umami flavors from the 
+                seared meat, the creaminess of the cheese, and the fresh crunch of the veggies. It's a classic American 
+                favorite that never fails to satisfy cravings!</p>
+            <p>---------------------------------------------------------------------------------------</p>
         </div>
+    </div>
 
-        <div id="pastaDetails" class="menu-details">
+         <div  id="pastaDetails" class="menu-container">
             <img src="https://static01.nyt.com/images/2025/01/17/multimedia/CR-Lemony-Hummus-Pasta-wtkj/CR-Lemony-Hummus-Pasta-wtkj-threeByTwoMediumAt2X.jpg" class="menu-image">
-            <h2>Garlic Parmesan Spaghetti</h2>
-            <p>A simple yet delicious dish, this spaghetti is coated in a rich garlic butter sauce, sprinkled with parmesan cheese, and garnished with fresh basil.</p>
-            <button class="btn btn-primary" onclick="showMainMenu()">Main Menu</button>
+            <div class="menu-details">
+            <h2>Garlic Parmesan Pasta</h2>
+            <p>---------------------------------------------------------------------------------------</p>
+            <p>This creamy and flavorful pasta dish is a true comfort food with a luxurious taste. The pasta is perfectly 
+                cooked al dente and tossed in a rich, velvety garlic butter sauce infused with slow-roasted garlic 
+                and premium Parmesan cheese. The cheese melts into the sauce, creating a smooth and creamy coating 
+                that clings to each strand of spaghetti. A touch of black pepper and parsley adds a mild kick and 
+                fresh contrast, making every bite indulgent. For extra depth, the dish is finished with a sprinkle of 
+                grated Parmesan and red pepper flakes, making it irresistibly delicious.</p>
+            <p>---------------------------------------------------------------------------------------</p>
         </div>
+    </div>
+        
+         <div id="milkshakeDetails" class="menu-container">
+            <img src="https://www.foodandwine.com/thmb/aYv9IwIyM4EKLL0o7W1CUSfjXzU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Vanilla-Milkshake-FT-MAG-RECIPE-0325-4ad53abc27a74f7687e510cc17d28d1d.jpg" class="menu-image">
+            <div class="menu-details">
+            <h2>Vanilla Milkshake</h2>
+            <p>---------------------------------------------------------------------------------------</p>
+            <p>A smooth and creamy vanilla milkshake that is both refreshing and indulgent. Made with premium vanilla 
+                bean ice cream, fresh whole milk, and a touch of whipped cream, this shake delivers an authentic and rich 
+                vanilla flavor in every sip. Topped with fluffy whipped cream, rainbow sprinkles, and a maraschino cherry, 
+                it's both a treat for the eyes and the taste buds. This milkshake is thick, satisfying, and perfectly 
+                balanced between sweet and creamy, making it an ideal dessert or a refreshing companion to any meal.</p>
+            <p>---------------------------------------------------------------------------------------</p>
+        </div>
+    </div>
+
     </div>
 
     <script>
         function showMenu(menuId) {
-            document.getElementById('menuOptions').style.display = 'none';
-            document.getElementById('pizzaDetails').style.display = 'none';
-            document.getElementById('burgerDetails').style.display = 'none';
-            document.getElementById('pastaDetails').style.display = 'none';
-            document.getElementById(menuId).style.display = 'block';
+            document.getElementById('menuOptions').style.display = 'none'; 
+        
+            let menuContainers = document.querySelectorAll('.menu-container');
+            menuContainers.forEach(container => container.style.display = 'none');
+        
+            let selectedMenu = document.getElementById(menuId);
+            if (selectedMenu) {
+                selectedMenu.style.display = 'flex';
+            }
         }
-
+        
         function showMainMenu() {
-            document.getElementById('menuOptions').style.display = 'flex';
-            document.getElementById('pizzaDetails').style.display = 'none';
-            document.getElementById('burgerDetails').style.display = 'none';
-            document.getElementById('pastaDetails').style.display = 'none';
+            document.getElementById('menuOptions').style.display = 'flex'; 
+        
+            let menuContainers = document.querySelectorAll('.menu-container');
+            menuContainers.forEach(container => container.style.display = 'none');
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
